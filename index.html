@@ -183,15 +183,86 @@
 
 					<section>
 						<h2>my_module.info</h2>
-					</section>
+						<pre><code data-trim contenteditable>
+name = My Module
+description = Make everything beautiful
+package = My Package
+core = 7.x
 
-					<section>
-						<h2>my_module.module</h2>
+; This is a comment
+dependencies[] = entity
+stylesheets[all][] = css/views.css
+files[] = my_module_extra_bits.inc
+</code></pre>			
+					<aside class="notes">
+						Note the file format
+					</aside>					
 					</section>
 
 					<section>
 						<h2>my_module.install</h2>
+						<pre><code data-trim contenteditable>
+&lt;?php
+
+/**
+ * @file
+ * Contains install and update functions for My Module.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function my_module_install() {			
+	// Do installation stuff
+}
+</code></pre>
+					<aside class="notes">
+						This is a PHP file. 
+						There's an opening tag but no closing tag.
+					</aside>		
 					</section>
+
+					<section>
+						<h2>my_module.install functions</h2>
+						<ul>
+							<li>my_module_install()</li>
+							<li>my_module_schema()</li>
+							<li>my_module_update_7001()</li>
+							<li>my_module_uninstall()</li>
+						</ul>
+						<aside class="notes">
+							All method names begin with the machine name of the module
+						</aside>								
+					</section>
+
+					<section>
+						<h2>my_module.module</h2>
+						<pre><code data-trim contenteditable>
+&lt;?php
+/**
+ * @file
+ * Do 
+ */
+
+/**
+ * Page callback for administrative settings
+ */
+function my_module_admin() {
+	// Do menu stuff
+}
+</code></pre>
+					</section>
+
+					<section>
+						<h2>my_module.module functions</h2>
+						<ul>
+							<li>my_module_admin()</li>
+							<li>my_module_menu()</li>
+							<li>my_module_permission()</li>
+							<li>Other hook implementations</li>
+							<li>Internal functions</li>
+						</ul>
+					</section>					
 				</section>
 
 				<section>
