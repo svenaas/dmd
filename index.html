@@ -86,55 +86,112 @@
 					</section>
 				</section>
 
-				<!-- Drupal -->
+				<!-- Scope -->
 				<section>
 					<h2>Drupal 7</h2>
+					<aside class="notes">							
+						Not Drupal 6 — Drupal 7's been out for years.
+						Not Drupal 8 — It won't be out for at least a year
+					</aside>
 				</section>
 
 				<!-- Architecture -->
 				<section>
 					<section>
-						<h2>Architecture</h2>						
+						<h2>Architecture</h2>			
 					</section>
 
 					<section>
-						<h2>Hooks</h2>						
+						<h2>Hooks</h2>
+						<ul>
+							<li>Callback API<li>
+							<li>Exposed by Drupal Core and some modules</li>
+							<li>Event-based</li>
+							<li>All modules can implement hook handlers</li>
+							<li>All modules' hook implementations get called</li>
+						</ul>
 					</section>
 
 					<section>
-						<h2>Menus</h2>						
+						<h2>Menus</h2>
+						<ul>
+							<li>Routing — associate a URL with a method</li>
+							<li>Permissions – whether a URL can be accessed</li>
+							<li>Menus</li>
+						</ul>
 					</section>
 
 					<section>
-						<h2>Teplates</h2>						
+						<h2>Templates</h2>
+						<ul>
+							<li>Render process</li>
+							<li>Theme hinting</li>							
+						</ul>
 					</section>
 
 					<section>
-						<h2>Arrays</h2>						
+						<h2>Render Arrays</h2>
+						<ul>
+							<li>Content data and metadata</li>
+							<li>Context</li>
+							<li>Messy: inconsistent and overcomplicated</li>
+						</ul>					
 					</section>
 				</section>
 
 				<!-- Tools -->
 				<section>
 					<section>
-						<h2>Tools</h2>						
+						<h2>Tools</h2>
 					</section>
 
 					<section>
-						<h2>Architecture</h2>						
+						<h2>watchdog / log</h2>
+						<ul>
+							<li>watchdog()</li>
+							<li>Shows up in administrative UI</li>
+						</ul>
 					</section>
 
 					<section>
-						<h2>Krumo / dpm</h2>						
+						<h2>Krumo / dpm</h2>
+						<ul>
+							<li>Inspect Drupal objects in situ</li>
+							<li>Not useful in all cases</li>
+						</ul>
 					</section>
 
 					<section>
-						<h2>watchdog / log</h2>						
+						<h2>Inspector</h2>
+						<ul>
+							<li>DOM Inspection</li>
+							<li>Network requests</li>
+							<li>JavaScript console</li>
+						</ul>
 					</section>
 				</section>
 
 				<section>
-					<h2>Anatomy of a Module</h2>
+					<section>
+						<h2>Anatomy of a Module</h2>
+						<ul>
+							<li>my_module.info</li>
+							<li>my_module.module</li>
+							<li>my_module.install</li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>my_module.info</h2>
+					</section>
+
+					<section>
+						<h2>my_module.module</h2>
+					</section>
+
+					<section>
+						<h2>my_module.install</h2>
+					</section>
 				</section>
 
 				<section>
@@ -142,16 +199,79 @@
 				</section>				
 
 				<section>
-					<h2>Responsibilities and Standards</h2>
+					<section>
+						<h2>Responsibilities and Standards</h2>		
+					</section>
+
+					<section>
+						<h2>Security</h2>		
+					</section>
+
+					<section>
+						<h2>Translatability</h2>		
+					</section>
+
+					<section>
+						<h2>Compatibility</h2>
+						<ul>
+							<li>Independence</li>
+							<li>Dependencies</li>
+						</ul>
+						<aside class="notes">
+							Play well with others.
+							State your needs clearly and correctly, both in .install and in documentation.
+						</aside>						
+					</section>
+
+					<section>
+						<h2>Performance</h2>		
+					</section>					
+
+					<section>
+						<h2>Extensibility</h2>		
+					</section>
 				</section>				
 
 				<section>
-					<h2>Contrib</h2>
+					<section>
+						<h2>Contrib</h2>
+					</section>
+
+					<section>
+						<h2>Drupal.org</h2>
+						<ul>
+							<li>Projects
+								<ul>
+									<li>Modules</li>
+									<li>Themes</li>
+								</ul>
+							</li>
+							<li>Users</li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>Types of projects</h2>
+						<ul>
+							<li>Non Drupal.org projects</li>
+							<li>Sandbox projects</li>
+							<li>Contrib projects</li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>Code standards</h2>
+					</section>
+
+					<section>
+						<h2>Project Applications</h2>
+						<ul>
+							<li>Contrib privileges</li>
+							<li>Application queue</li>
+							<li>Review process</li>
+						</ul>
+					</section>				
 				</section>
-
-				<section>
-					<h2>Project Applications</h2>
-				</section>				
 
 				<section>
 					<h2>Drupal 8</h2>
@@ -161,14 +281,11 @@
 				<section>
 					<section>
 						<h2>Empowerment</h2>
-					</section>
-
-					<section>
-						<h2>Empowerment: You</h2>
-					</section>
-
-					<section>
-						<h2>Empowerment: Your Students</h2>
+						<p>Many Drupal customizations can be implemented in custom modules much more easily than you think.</p>
+						<ul>
+							<li>You can do this</li>
+							<li>Your <em>students</em> can do this</li>
+						</ul>
 					</section>
 
 					<section>
