@@ -1,227 +1,189 @@
 <!doctype html>
 <html lang="en">
 
-	<head>
-		<meta charset="utf-8">
+  <head>
+    <meta charset="utf-8">
 
-		<title>Drupal Module Development: An Introduction</title>
+    <title>Drupal Module Development: An Introduction</title>
 
-		<meta name="description" content="The Drupal community has provided a rich and diverse assortment of contributed modules for site builders to choose from, but sometimes you need to develop your own module to get the job done. This presentation will provide an overview of the essential parts of a custom Drupal module, describe key Drupal APIs and concepts, suggest tools for debugging your module code, and teach you where to start if you'd like to contribute your module to the Drupal community. Attendees should have experience building sites in Drupal and a working knowledge of basic PHP code.">
-		<meta name="author" content="Sven Aas">
+    <meta name="description" content="The Drupal community has provided a rich and diverse assortment of contributed modules for site builders to choose from, but sometimes you need to develop your own module to get the job done. This presentation will provide an overview of the essential parts of a custom Drupal module, describe key Drupal APIs and concepts, suggest tools for debugging your module code, and teach you where to start if you'd like to contribute your module to the Drupal community. Attendees should have experience building sites in Drupal and a working knowledge of basic PHP code.">
+    <meta name="author" content="Sven Aas">
 
-		<meta name="apple-mobile-web-app-capable" content="yes" />
-		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<link rel="stylesheet" href="css/reveal.min.css">
-		<link rel="stylesheet" href="css/theme/serif.css" id="theme">
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/serif.css" id="theme">
 
-		<!-- For syntax highlighting -->
-		<link rel="stylesheet" href="lib/css/zenburn.css">
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
 
-		<!-- If the query includes 'print-pdf', include the PDF print sheet -->
-		<script>
-			if( window.location.search.match( /print-pdf/gi ) ) {
-				var link = document.createElement( 'link' );
-				link.rel = 'stylesheet';
-				link.type = 'text/css';
-				link.href = 'css/print/pdf.css';
-				document.getElementsByTagName( 'head' )[0].appendChild( link );
-			}
-		</script>
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+      if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+      }
+    </script>
 
-		<!--[if lt IE 9]>
-		<script src="lib/js/html5shiv.js"></script>
-		<![endif]-->
-	</head>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
 
-	<body>
+  <body>
 
-		<div class="reveal">
+    <div class="reveal">
 
-			<header style="position: absolute;top: 12px; left: 12px; z-index:500; font-size:16px;"></header>
+      <header style="position: absolute;top: 12px; left: 12px; z-index:500; font-size:16px;"></header>
 
-			<style type="text/css">
-				header:after { content: "Drupal Module Development: An Introduction";}
-				.titleSlide header:after { content: "";}
+      <style type="text/css">
+        header:after { content: "Drupal Module Development: An Introduction";}
+        .titleSlide header:after { content: "";}
 
-				footer.left:after { content: "Sven Aas / @svenaas";}
-				footer.right:after { content: "Copyright 2014";}
-				.titleSlide footer:after { content: "";}
+        footer.left:after { content: "#psudmd";}
+        footer.right:after { content: "Copyright 2014 Sven Aas / @svenaas";}
+        .titleSlide footer:after { content: "";}
 
-			</style>
+      </style>
 
-			<!-- Any section element inside of this container is displayed as a slide -->
-			<div class="slides">
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
 
-				<section data-state="titleSlide">
-					<h1>Drupal Module Development</h1>
-					<h3>An Introduction</h3>
-					<p>
-						<small>
-						Created by Sven Aas / <a href="http://twitter.com/svenaas">@svenaas</a><br/>
-						<a href="http://webconference.psu.edu/program/drupal-module-development-introduction">Presented at the Web Conference at Penn State, June 9, 2014</a>
-						</small>
-					</p>
-				</section>
+        <section data-state="titleSlide">
+          <h1>Drupal Module Development</h1>
+          <h3>An Introduction</h3>
+          <p>
+            <small>
+            Created by Sven Aas / <a href="http://twitter.com/svenaas">@svenaas</a><br/>
+            <a href="http://webconference.psu.edu/program/drupal-module-development-introduction">Presented at the Web Conference at Penn State, June 9, 2014</a>
+            </small>
+          </p>
+          <p>#psudmd</p>
+        </section>
 
-				<!-- Introduction -->
-				<section>
-					<section>
-						<h2>Sven Aas</h2>
-						<h3>Lead Web Applications Developer</h3>
-						<h3>Mount Holyoke College</h3>
-						<p><a href="http://twitter.com/svenaas">@svenaas</a></p>
-						<aside class="notes">
-							My background: undergrad, grad, professional
-							Lots of languages, even a little PHP, but not much (even now)
-							(PHP, in my opinion, makes it too easy for inexperienced 
-							programmers to get results without proceeding wisely.)	
-						</aside>						
-					</section>
+        <!-- Introduction -->
+        <section>
+          <section>
+            <h2>Sven Aas</h2>
+            <h3>Lead Web Applications Developer</h3>
+            <h3>Mount Holyoke College</h3>
+            <p><a href="http://twitter.com/svenaas">@svenaas</a></p>
+            <aside class="notes">
+              My background: undergrad, grad, professional<br/>
+              Lots of languages, even a little PHP, but not much (even now)<br/>
+              (PHP, in my opinion, makes it too easy for inexperienced programmers to get results without proceeding wisely.) 
+            </aside>            
+          </section>
 
-					<section>
-						<h2>My Drupal Experience</h2>
-						<ul>
-							<li>Started exploring Drupal in 2010</li>
-							<li>2011: DrupalCon Chicago and Training</li>
-							<li>2012: DrupalCon Denver and Site Launch</li>
-							<li>2014: DrupalCon Austin</li>
-						</ul>
-						<aside class="notes">
-							When I started at Mount Holyoke in 2006 they were using another CMS. 
-							Eventually the time came to reassess the CMS situation. We evaluated 
-							quite a few tools before deciding that Drupal seemed like the best fit
-							for us. (This was an interesting process and topic — feel free to come 
-							talk to me about it later.)
-							Then: conferences
-							YESTERDAY I was still in Texas. I've hardly had time to change my clothes. 
-						</aside>
-					</section>
+          <section>
+            <h2>My Drupal Experience</h2>
+            <ul>
+              <li>Started exploring Drupal in 2010</li>
+              <li>2011: DrupalCon Chicago and Training</li>
+              <li>2012: DrupalCon Denver and Site Launch</li>
+              <li>2014: DrupalCon Austin</li>
+            </ul>
+            <aside class="notes">
+              When I started at Mount Holyoke in 2006 they were using another CMS.<br/> 
+              Eventually the time came to reassess the CMS situation. We evaluated 
+              quite a few tools before deciding that Drupal seemed like the best fit
+              for us. (This was an interesting process and topic — feel free to come 
+              talk to me about it later.)<br/>
+              Then: conferences<br/>
+              YESTERDAY I was still in Texas. I've hardly had time to change my clothes. 
+            </aside>
+          </section>
 
-					<section>
-						<h2>My Core Message</h2>
-						<h3>You can do this</h3>
-						<aside class="notes">							
-							Always be learning—it's why I'm in this field.
-							Higher Ed. HighEdWeb. Student Mentoring. 
-							You can do this. It's really not that hard.
-						</aside>
-					</section>
-				</section>
+          <section>
+            <h2>My Core Message</h2>
+            <h3>You can do this</h3>
+            <aside class="notes">             
+              Always be learning—it's why I'm in this field.<br/>
+              Higher Ed. HighEdWeb. Student Mentoring.<br/>
+              You can do this. It's really not that hard.
+            </aside>
+          </section>
+        </section>
 
-				<!-- Scope -->
-				<section>
-					<h2>Drupal 7</h2>
-					<aside class="notes">							
-						Not Drupal 6 — Drupal 7's been out for three and a half years.
-						Not Drupal 8 — It won't be out for at least a year
-					</aside>
-				</section>
+        <!-- Scope -->
+        <section>
+          <h2>Drupal 7</h2>
+          <aside class="notes">             
+            Not Drupal 6 — Drupal 7's been out for three and a half years.<br/>
+            Not Drupal 8 — It won't be out for at least a year
+          </aside>
+        </section>
 
-				<!-- Architecture -->
-				<section>
-					<section>
-						<h2>Architecture ([Over]simplified)</h2>			
-						<p>On every HTTP request ...</p>
-						<ul>
-							<li>index.php is requested</li>
-							<li><a href="https://api.drupal.org/api/drupal/includes%21bootstrap.inc/7">bootstrap.inc</a> is loaded along with other core code</li>
-							<li>all [enabled] module and theme code is loaded</li>
-							<li>index.php passes request to a handler</li>
-						</ul>
-					</section>
+        <!-- Architecture -->
+        <section>
+          <section>
+            <h2>Architecture ([Over]simplified)</h2>      
+            <p>On every HTTP request ...</p>
+            <ul>
+              <li>index.php is requested</li>
+              <li><a href="https://api.drupal.org/api/drupal/includes%21bootstrap.inc/7">bootstrap.inc</a> is loaded along with other core code</li>
+              <li>all [enabled] module and theme code is loaded</li>
+              <li>index.php passes request to a handler</li>
+            </ul>
+          </section>
 
-					<section>
-						<h2><a href="https://api.drupal.org/api/drupal/includes!module.inc/group/hooks/7">Hooks</a></h2>
-						<ul>
-							<li>Callback API</li>
-							<li>Exposed by Drupal Core and some modules</li>
-							<li>Event-based</li>
-							<li>All modules can implement hook handlers</li>
-							<li>All modules' hook implementations get called</li>
-						</ul>
-					</section>
+          <section>
+            <h2><a href="https://api.drupal.org/api/drupal/includes!module.inc/group/hooks/7">Hooks</a></h2>
+            <ul>
+              <li>Callback API</li>
+              <li>Exposed by Drupal Core and some modules</li>
+              <li>Event-based</li>
+              <li>All modules can implement hook handlers</li>
+              <li>All modules' hook implementations get called</li>
+            </ul>
+          </section>
 
-					<section>
-						<h2><a href="https://drupal.org/documentation/modules/menu">Menus</a></h2>
-						<ul>
-							<li>Routing — associate a URL with a method</li>
-							<li>Permissions – whether a URL can be accessed</li>
-							<li>Menus</li>
-						</ul>
-					</section>
+          <section>
+            <h2><a href="https://drupal.org/documentation/modules/menu">Menus</a></h2>
+            <ul>
+              <li>Routing — associate a URL with a method</li>
+              <li>Permissions – whether a URL can be accessed</li>
+              <li>Menus</li>
+            </ul>
+          </section>
 
-					<section>
-						<h2>Templates</h2>
-						<ul>
-							<li><a href="https://api.drupal.org/api/drupal/includes%21common.inc/function/drupal_render/7">Render process</a></li>
-							<li><a href="https://drupal.org/node/1089656">Template (theme hook) suggestions</a></li>							
-						</ul>
-					</section>
+          <section>
+            <h2>Templates</h2>
+            <ul>
+              <li><a href="https://api.drupal.org/api/drupal/includes%21common.inc/function/drupal_render/7">Render process</a></li>
+              <li><a href="https://drupal.org/node/1089656">Template (theme hook) suggestions</a></li>              
+            </ul>
+          </section>
 
-					<section>
-						<h2><a href="https://api.drupal.org/api/drupal/includes%21common.inc/function/drupal_render/7">Render Arrays</A></h2>
-						<ul>
-							<li>Content data and metadata</li>
-							<li>Context</li>
-							<li>Messy: inconsistent and overcomplicated</li>
-						</ul>					
-					</section>
-				</section>
+          <section>
+            <h2><a href="https://api.drupal.org/api/drupal/includes%21common.inc/function/drupal_render/7">Render Arrays</A></h2>
+            <ul>
+              <li>Content data and metadata</li>
+              <li>Context</li>
+              <li>Messy: inconsistent and overcomplicated</li>
+            </ul>         
+          </section>
+        </section>
 
-				<!-- Tools -->
-				<section>
-					<section>
-						<h1>Tools</h1>
-					</section>
+        <section>
+          <section>
+            <h2>Anatomy of a Module</h2>
+            <ul>
+              <li>my_module.info</li>
+              <li>my_module.module</li>
+              <li>my_module.install</li>
+            </ul>
+          </section>
 
-					<section>
-						<h2>watchdog / log</h2>
-						<ul>
-							<li><a href="https://api.drupal.org/api/drupal/includes!bootstrap.inc/function/watchdog/7">watchdog()</a></li>
-							<li>Shows up in administrative UI at Reports / Recent log messages (admin/reports/dblog)</li>
-						</ul>
-					</section>
-
-					<section>
-						<h2><a href="https://drupal.org/project/devel">Devel module</a></h2>						
-						<ul>
-							<li><a href="https://api.drupal.org/api/devel/devel.module/function/dpm/7">dpm</a> — uses <a href="http://krumo.sourceforge.net/">Krumo</a> to pretty-print variables</li>
-							<li>Inspect Drupal objects in situ</li>
-							<li>Not useful in all cases</li>
-							<li>More info at <a href="http://ratatosk.net/drupal/tutorials/debugging-drupal.html">Debugging Drupal</a>, by Morten Wulff</li>
-						</ul>
-						<aside class="notes">							
-							dpm prints a variable recursively in the message area of the page
-							There are many other 
-						</aside>						
-					</section>
-
-					<section>
-						<h2>Inspector</h2>
-						<ul>
-							<li>DOM Inspection</li>
-							<li>Network requests</li>
-							<li>JavaScript console</li>
-						</ul>
-					</section>
-				</section>
-
-				<section>
-					<section>
-						<h2>Anatomy of a Module</h2>
-						<ul>
-							<li>my_module.info</li>
-							<li>my_module.module</li>
-							<li>my_module.install</li>
-						</ul>
-					</section>
-
-					<section>
-						<h2>my_module.info</h2>
-						<pre><code data-trim contenteditable>
+          <section>
+            <h2>my_module.info</h2>
+            <pre><code data-trim contenteditable>
 name = My Module
 description = Make everything beautiful
 package = My Package
@@ -231,15 +193,15 @@ core = 7.x
 dependencies[] = entity
 stylesheets[all][] = css/my_module.css
 files[] = my_module_extra_bits.inc
-</code></pre>			
-					<aside class="notes">
-						Note the file format
-					</aside>					
-					</section>
+</code></pre>     
+          <aside class="notes">
+            Note the file format
+          </aside>          
+          </section>
 
-					<section>
-						<h2>my_module.install</h2>
-						<pre><code data-trim contenteditable>
+          <section>
+            <h2>my_module.install</h2>
+            <pre><code data-trim contenteditable>
 &lt;?php
 
 /**
@@ -250,232 +212,300 @@ files[] = my_module_extra_bits.inc
 /**
  * Implements hook_install().
  */
-function my_module_install() {			
-	// Do installation stuff
+function my_module_install() {      
+  // Do installation stuff
 }
 </code></pre>
-					<aside class="notes">
-						This is a PHP file. 
-						There's an opening tag but no closing tag.
-					</aside>		
-					</section>
+          <aside class="notes">
+            This is a PHP file. 
+            There's an opening tag but no closing tag.
+          </aside>    
+          </section>
 
-					<section>
-						<h2>my_module.install functions</h2>
-						<ul>
-							<li>my_module_install()</li>
-							<li>my_module_schema()</li>
-							<li>my_module_update_7001()</li>
-							<li>my_module_uninstall()</li>
-						</ul>
-						<aside class="notes">
-							All method names begin with the machine name of the module
-						</aside>								
-					</section>
+          <section>
+            <h2>my_module.install functions</h2>
+            <ul>
+              <li>my_module_install()</li>
+              <li>my_module_schema()</li>
+              <li>my_module_update_7001()</li>
+              <li>my_module_uninstall()</li>
+            </ul>
+            <aside class="notes">
+              All method names begin with the machine name of the module
+            </aside>                
+          </section>
 
-					<section>
-						<h2>my_module.module</h2>
-						<pre><code data-trim contenteditable>
+          <section>
+            <h2>my_module.module</h2>
+            <pre><code data-trim contenteditable>
 &lt;?php
 /**
  * @file
- * Do 
+ * Make everything beautiful 
  */
 
 /**
  * Page callback for administrative settings
  */
 function my_module_admin() {
-	// Do menu stuff
+  // Do menu stuff
 }
 </code></pre>
-					</section>
+          </section>
 
-					<section>
-						<h2>my_module.module functions</h2>
-						<ul>
-							<li>my_module_admin()</li>
-							<li>my_module_menu()</li>
-							<li>my_module_permission()</li>
-							<li>Other hook implementations</li>
-							<li>Internal functions</li>
-						</ul>
-					</section>					
-				</section>
+          <section>
+            <h2>my_module.module functions</h2>
+            <ul>
+              <li>my_module_admin()</li>
+              <li>my_module_menu()</li>
+              <li>my_module_permission()</li>
+              <li>Other hook implementations</li>
+              <li>Internal functions</li>
+            </ul>
+          </section>          
+        </section>
 
-				<section>
-					<h2>Doing Something Useful</h2>
-				</section>				
+        <!-- Tools -->
+        <section>
+          <section>
+            <h1>Tools</h1>
+          </section>
 
-				<section>
-					<section>
-						<h2>Responsibilities</h2>
-					</section>
+          <section>
+            <h2>watchdog / log</h2>
+            <ul>
+              <li><a href="https://api.drupal.org/api/drupal/includes!bootstrap.inc/function/watchdog/7">watchdog()</a></li>
+              <li>Shows up in administrative UI at Reports / Recent log messages (admin/reports/dblog)</li>
+            </ul>
+          </section>
 
-					<section>
-						<h2><a href="https://drupal.org/writing-secure-code">Security</a></h2>
-						<ul>
-							<li>Permissions</li>
-							<li>User inputs</li>
-						</ul>
-					</section>
+          <section>
+            <h2><a href="https://drupal.org/project/devel">Devel module</a></h2>            
+            <ul>
+              <li><a href="https://api.drupal.org/api/devel/devel.module/function/dpm/7">dpm()</a> — uses <a href="http://krumo.sourceforge.net/">Krumo</a> to pretty-print variables</li>
+              <li>Inspect Drupal objects in situ</li>
+              <li>More info at <a href="http://ratatosk.net/drupal/tutorials/debugging-drupal.html">Debugging Drupal</a>, by Morten Wulff</li>
+            </ul>
+            <aside class="notes">             
+              dpm prints a variable recursively in the message area of the page
+              Not every page has a message area (but there are many alternative functions described at Debugging Drupal and elsewhere: dpr, dvm, etc)
+            </aside>            
+          </section>
 
-					<section>
-						<h2>Translatability</h2>
-						<ul>
-							<li>t()</li>
-						</ul>
-					</section>
+          <section>
+            <h2>Inspector</h2>
+            <ul>
+              <li>DOM Inspection</li>
+              <li>Network requests</li>
+              <li>JavaScript console</li>
+            </ul>
+            <aside class="notes">             
+              Usage and tools will vary with browser
+              You may have to turn this tool on, install extensions, etc
+              Learn how it works with your development browser(s) of choice
+            </aside>                
+          </section>
+        </section>
 
-					<section>
-						<h2>Compatibility</h2>
-						<ul>
-							<li>Independence</li>
-							<li>Dependencies</li>
-						</ul>
-						<aside class="notes">
-							Play well with others.
-							State your needs clearly and correctly, both in .install and in documentation.
-						</aside>						
-					</section>
+        <section>
+          <section>
+            <h1>Doing Something Useful</h1>
+          </section>
 
-					<section>
-						<h2>Performance</h2>		
-					</section>					
+          <section>
+            <h2>Modifying a Form</h2>
+            <ul>
+              <li><a href="https://api.drupal.org/api/drupal/developer!topics!forms_api_reference.html/7">Form components</a></li>
+              <li><a href="https://api.drupal.org/api/drupal/modules%21system%21system.api.php/function/hook_form_alter/7">hook_form_alter()</a></li>
+            </ul>
+            <aside class="notes">             
+              Demo
+            </aside>              
+          </section>
 
-					<section>
-						<h2>Extensibility</h2>		
-					</section>
-				</section>				
-
-				<section>
-					<section>
-						<h2>Contrib</h2>
-					</section>
-
-					<section>
-						<h2>Drupal.org</h2>
-						<ul>
-							<li>Projects
-								<ul>
-									<li>Modules</li>
-									<li>Themes</li>
-								</ul>
-							</li>
-							<li>Users</li>
-						</ul>
-					</section>
-
-					<section>
-						<h2>Types of projects</h2>
-						<ul>
-							<li>Non-Drupal.org projects</li>
-							<li><a href="https://drupal.org/node/1011196">Sandbox projects</a></li>
-							<li><a href="https://drupal.org/node/1015224">Full projects</a></li>
-						</ul>
-					</section>
-
-					<section>
-						<h2><a href="https://drupal.org/coding-standards">Code standards</a></h2>
-						<ul>
-							<li><a href="https://groups.drupal.org/code-review">Code Review</a></li>
-							<li><a href="https://drupal.org/project/coder">Coder project</a></li>
-							<li><a href="http://pareview.sh/">PAReview</a> (link on Code Review page is broken as of 8 June 2014)</li>
-						</ul>
-					</section>
-
-					<section>
-						<h2><a href="https://drupal.org/project/projectapplications">Project Applications</a></h2>
-						<ul>
-							<li>Contrib privileges</li>
-							<li><a href="https://drupal.org/node/1587704">Project application checklist</a></li>
-							<li><a href="https://drupal.org/node/1011698">Application for permission</a></li>
-							<li><a href=""><a href="https://drupal.org/project/issues/projectapplications">Application queue</a></a></li>
-							<li>Review process</li>
-							<li><a href="http://drupal.org/node/1975228">Review bonus program</a></li>
-							<li><a href="http://drupal.org/project/issues/search/projectapplications?issue_tags=PAReview%3A%20review%20bonus">Review bonus queue</a></li>
-						</ul>
-					</section>				
-				</section>
-
-				<section>
-					<h2>Drupal 8</h2>
-				</section>				
-
-				<!-- Conclusion -->
-				<section>
-					<section>
-						<h2>Empowerment</h2>
-						<p>Many Drupal customizations can be implemented in custom modules much more easily than you think.</p>
-						<ul>
-							<li>You can do this</li>
-							<li>Your <em>students</em> can do this</li>
-						</ul>
-					</section>
-
-					<section>
-						<h2>Resources</h2>
-						<ul>
-							<li>Drupal.org</li>
-							<li><a href="http://ratatosk.net/drupal/tutorials/debugging-drupal.html">Debugging Drupal</a>, by Morten Wulff</li>
-
-						</ul>
-					</section>
+          <section>
+            <h2><a href="https://api.drupal.org/api/drupal">Drupal APIs</a></h2>
+            <ul>
+              <li><a href="https://api.drupal.org/api/drupal/includes%21form.inc/group/form_api/7">Forms</a></li>
+              <li><a href="https://api.drupal.org/api/drupal/includes%21menu.inc/group/menu/7">Menus</a></li>
+              <li><a href="https://api.drupal.org/api/drupal/modules%21field%21field.module/group/field/7">Fields</a></li>
+            </ul>
+          </section>
 
 
-					<section>
-						<h2>Thank you</h2>
-					</section>
+        </section>        
 
-					<section>
-						<h2>Questions?</h2>
-						<h3>Stay in Touch</h3>
-						<ul>
-							<li><a href="http://twitter.com/svenaas">@svenaas</a></li>
-							<li>saas at mtholyoke dot edu</li>
-						</ul>
-					</section>
-				</section>
+        <section>
+          <section>
+            <h2>Responsibilities</h2>
+          </section>
 
-			</div>
+          <section>
+            <h2><a href="https://drupal.org/writing-secure-code">Security</a></h2>
+            <ul>
+              <li>Consider permissions</li>
+              <li><a href="https://api.drupal.org/api/drupal/includes!common.inc/group/sanitization/7">Sanitize user input</a></li>
+            </ul>
+          </section>
 
-			<footer class="left"style="position: absolute;bottom: 12px; left: 12px; z-index:500; font-size:16px;"></footer>
-			<footer class="right"style="position: absolute;bottom: 12px; right: 12px; z-index:500; font-size:16px;"></footer>
+          <section>
+            <h2>Translatability</h2>
+            <ul>
+              <li><a href="https://api.drupal.org/api/drupal/includes!bootstrap.inc/function/t/7">t()</a></li>
+              <li><a href="https://drupal.org/node/322729">Localization API</a></li>
+            </ul>
+          </section>
 
-		</div>
+          <section>
+            <h2>Compatibility</h2>
+            <ul>
+              <li>Independence</li>
+              <li>Dependencies</li>
+            </ul>
+            <aside class="notes">
+              Play well with others.
+              State your needs clearly and correctly, both in .install and in documentation.
+            </aside>            
+          </section>
 
-		<script src="lib/js/head.min.js"></script>
-		<script src="js/reveal.min.js"></script>
+          <section>
+            <h2>Performance</h2>    
+          </section>          
 
-		<script>
+          <section>
+            <h2>Extensibility</h2>    
+          </section>
+        </section>        
 
-			// Full list of configuration options available here:
-			// https://github.com/hakimel/reveal.js#configuration
-			Reveal.initialize({
-				controls: true,
-				progress: true,
-				history: true,
-				center: true,
+        <section>
+          <section>
+            <h2>Contrib</h2>
+          </section>
 
-				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
-				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+          <section>
+            <h2>Drupal.org</h2>
+            <ul>
+              <li>Projects
+                <ul>
+                  <li>Modules</li>
+                  <li>Themes</li>
+                </ul>
+              </li>
+              <li>Users</li>
+            </ul>
+          </section>
 
-				// Parallax scrolling
-				// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
-				// parallaxBackgroundSize: '2100px 900px',
+          <section>
+            <h2>Types of projects</h2>
+            <ul>
+              <li>Non-Drupal.org projects</li>
+              <li><a href="https://drupal.org/node/1011196">Sandbox projects</a></li>
+              <li><a href="https://drupal.org/node/1015224">Full projects</a></li>
+            </ul>
+          </section>
 
-				// Optional libraries used to extend on reveal.js
-				dependencies: [
-					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
-					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
-					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
-				]
-			});
+          <section>
+            <h2><a href="https://drupal.org/coding-standards">Code standards</a></h2>
+            <ul>
+              <li><a href="https://groups.drupal.org/code-review">Code Review</a></li>
+              <li><a href="https://drupal.org/project/coder">Coder project</a></li>
+              <li><a href="http://pareview.sh/">PAReview</a> (link on Code Review page is broken as of 8 June 2014)</li>
+            </ul>
+          </section>
 
-		</script>
+          <section>
+            <h2><a href="https://drupal.org/project/projectapplications">Project Applications</a></h2>
+            <ul>
+              <li>Contrib privileges</li>
+              <li><a href="https://drupal.org/node/1587704">Project application checklist</a></li>
+              <li><a href="https://drupal.org/node/1011698">Application for permission</a></li>
+              <li><a href=""><a href="https://drupal.org/project/issues/projectapplications">Application queue</a></a></li>
+              <li>Review process</li>
+              <li><a href="http://drupal.org/node/1975228">Review bonus program</a></li>
+              <li><a href="http://drupal.org/project/issues/search/projectapplications?issue_tags=PAReview%3A%20review%20bonus">Review bonus queue</a></li>
+            </ul>
+          </section>        
+        </section>
 
-	</body>
+        <section>
+          <h2>Drupal 8</h2>
+        </section>        
+
+        <!-- Conclusion -->
+        <section>
+          <section>
+            <h2>Empowerment</h2>
+            <p>Many Drupal customizations can be implemented in custom modules much more easily than you think.</p>
+            <ul>
+              <li>You can do this</li>
+              <li>Your <em>students</em> can do this</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2>Resources</h2>
+            <ul>
+              <li>Drupal.org</li>
+              <li><a href="http://ratatosk.net/drupal/tutorials/debugging-drupal.html">Debugging Drupal</a>, by Morten Wulff</li>
+
+            </ul>
+          </section>
+
+
+          <section>
+            <h2>Thank you</h2>
+          </section>
+
+          <section>
+            <h2>Questions?</h2>
+            <h3>Stay in Touch</h3>
+            <ul>
+              <li><a href="http://twitter.com/svenaas">@svenaas</a></li>
+              <li>saas at mtholyoke dot edu</li>
+              <li>#psudmd</li>
+            </ul>
+          </section>
+        </section>
+
+      </div>
+
+      <footer class="left"style="position: absolute;bottom: 12px; left: 12px; z-index:500; font-size:24px;"></footer>
+      <footer class="right"style="position: absolute;bottom: 12px; right: 12px; z-index:500; font-size:16px;"></footer>
+
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+
+    <script>
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+          { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+          { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+        ]
+      });
+
+    </script>
+
+  </body>
 </html>
